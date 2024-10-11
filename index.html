@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Content Switch</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="section_1">
+      <div class="inner_section">
+        <!-- Left Part - 40% width -->
+        <div class="left_section">
+          <img
+            id="left_img"
+            src="https://hjrealestates.com/wp-content/uploads/2023/08/hj-real-estates-our-story-sathbir-siingh-sachdeva.jpg"
+            alt="Left Image"
+          />
+        </div>
+
+        <!-- Right Part - 60% width -->
+        <div class="right_section">
+          <div class="right_head">
+            <h2>Better Lives with Better Homes <span class="dots"></span></h2>
+          </div>
+
+          <div class="right_content">
+            <div class="image_holder">
+              <img
+                id="right_img"
+                src="https://hjrealestates.com/wp-content/uploads/2023/08/hj-real-estates-our-story-jasbier-sachdeva.jpg"
+                alt="Right Image"
+              />
+            </div>
+            <div class="right_subpara">
+              <div class="para">
+                <p id="para_text">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. At
+                  harum et pariatur aliquid distinctio fugit libero porro veniam
+                  cupiditate esse saepe odio, dolorum blanditiis quod eligendi
+                  necessitatibus alias eos eum quidem vitae! et pariatur aliquid
+                  distinctio fugit libero porro veniam cupiditate esse saepe
+                  odio, dolorum blanditiis quod eligendi necessitatibus alias
+                  eos eum quidem vitae!
+                </p>
+                <h3 id="sub_head" class="sub_head">Sathbir Siingh Sachdeva</h3>
+                <p id="position" class="">CEO & CO-Founder</p>
+              </div>
+              <div class="arrow">
+                <div class="icons">
+                  <span class="icon" id="prev_arrow"
+                    ><i class="fas fa-chevron-left"></i
+                  ></span>
+                  <span class="icon" id="next_arrow"
+                    ><i class="fas fa-chevron-right"></i
+                  ></span>
+                  <div class="bar_area">
+                    <span class="">01</span>
+                    <div class="bar"></div>
+                    <span class="">02</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Data Array holding the content
+      const contentData = [
+        {
+          img: "https://hjrealestates.com/wp-content/uploads/2023/08/hj-real-estates-our-story-sathbir-siingh-sachdeva.jpg",
+          para: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. At harum et pariatur aliquid distinctio fugit libero porro veniam cupiditate.Lorem ipsum dolor sit, amet consectetur adipisicing elit. At harum et pariatur aliquid distinctio fugit libero porro veniam cupiditate Lorem ipsum dolor sit, amet consectetur adipisicing elit. At harum et pariatur aliquid distinctio fugit libero porro veniam cupiditate.",
+          subHead: "Sathbir Siingh Sachdeva",
+          position: "CEO & CO-Founder",
+        },
+        {
+          img: "https://hjrealestates.com/wp-content/uploads/2023/08/hj-real-estates-our-story-jasbier-sachdeva.jpg",
+          para: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. At harum et pariatur aliquid distinctio fugit libero porro veniam cupiditate.Lorem ipsum dolor sit, amet consectetur adipisicing elit. At harum et pariatur aliquid distinctio fugit libero porro veniam cupiditate Lorem ipsum dolor sit, amet consectetur adipisicing elit. At harum et pariatur aliquid distinctio fugit libero porro veniam cupiditate.",
+          subHead: "John Doe",
+          position: "Managing Director",
+        },
+      ];
+
+      let currentIndex = 0;
+
+      // Function to update content based on the current index
+      function updateContent() {
+        const currentData = contentData[currentIndex];
+
+        // Swap left and right images and update content
+        const leftImage = document.getElementById("left_img");
+        const rightImage = document.getElementById("right_img");
+        const leftImgSrc = leftImage.src;
+
+        // Swap the images
+        leftImage.src = currentData.img;
+        rightImage.src = leftImgSrc; // Right image becomes what was previously in the left
+
+        // Update text and position dynamically
+        document.getElementById("para_text").textContent = currentData.para;
+        document.getElementById("sub_head").textContent = currentData.subHead;
+        document.getElementById("position").textContent = currentData.position;
+
+        // Update the dynamic bar width based on the current index
+        const dynamicBar = document.querySelector(".bar");
+        const newWidth = ((currentIndex + 1) / contentData.length) * 100; // Calculate new width in percentage
+        dynamicBar.style.width = newWidth + "%"; // Set the new width
+      }
+
+      // Event listeners for the arrow clicks
+      document
+        .getElementById("prev_arrow")
+        .addEventListener("click", function () {
+          currentIndex =
+            currentIndex === 0 ? contentData.length - 1 : currentIndex - 1;
+          updateContent();
+        });
+
+      document
+        .getElementById("next_arrow")
+        .addEventListener("click", function () {
+          currentIndex =
+            currentIndex === contentData.length - 1 ? 0 : currentIndex + 1;
+          updateContent();
+        });
+
+      // Initial content setup
+      updateContent();
+    </script>
+  </body>
+</html>
