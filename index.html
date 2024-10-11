@@ -16,7 +16,7 @@
       <div class="inner_section">
         <!-- Left Part - 40% width -->
         <div class="left_section">
-          <img
+          <img 
             id="left_img"
             src="https://hjrealestates.com/wp-content/uploads/2023/08/hj-real-estates-our-story-sathbir-siingh-sachdeva.jpg"
             alt="Left Image"
@@ -117,22 +117,37 @@
 
       // Event listeners for the arrow clicks
       const bar = document.querySelector('.bar');
+      bar.classList.add('half-orange')
       document.getElementById("prev_arrow").addEventListener("click", function () {
   currentIndex = currentIndex === 0 ? contentData.length - 1 : currentIndex - 1;
   updateContent();
-
   // Make the bar half orange on 'prev_arrow' click
-  bar.classList.add('half-orange');    // Add half-orange class
-  bar.classList.remove('full-orange'); // Remove full-orange class
+  if (currentIndex==0) {
+    console.log("inside current index");
+    
+    bar.classList.add('half-orange');   
+    bar.classList.remove('full-orange'); 
+  } else{
+    console.log("inside else current index");
+    bar.classList.add('full-orange');     
+    bar.classList.remove('half-orange'); 
+  }
 });
 
 document.getElementById("next_arrow").addEventListener("click", function () {
   currentIndex = currentIndex === contentData.length - 1 ? 0 : currentIndex + 1;
   updateContent();
 
-  // Make the bar fully orange on 'next_arrow' click
-  bar.classList.add('full-orange');    // Add full-orange class
-  bar.classList.remove('half-orange'); // Remove half-orange class
+  if (currentIndex==1) {
+    console.log("inside current index");
+    
+    bar.classList.add('full-orange');     
+    bar.classList.remove('half-orange');  
+  } else{
+    console.log("inside else current index");
+    bar.classList.add('half-orange');    
+    bar.classList.remove('full-orange');  
+  }
 });
 
       // Initial content setup

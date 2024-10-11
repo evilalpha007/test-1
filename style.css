@@ -24,12 +24,12 @@ body {
 }
 
 .left_section {
-  flex: 0 0 40%;
+  flex: 0 0 40%; 
 }
 
 .left_section img {
   width: 100%;
-  height: auto;
+  height: 95vh;
   object-fit: cover;
 }
 
