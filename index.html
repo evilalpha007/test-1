@@ -116,21 +116,24 @@
       }
 
       // Event listeners for the arrow clicks
-      document
-        .getElementById("prev_arrow")
-        .addEventListener("click", function () {
-          currentIndex =
-            currentIndex === 0 ? contentData.length - 1 : currentIndex - 1;
-          updateContent();
-        });
+      const bar = document.querySelector('.bar');
+      document.getElementById("prev_arrow").addEventListener("click", function () {
+  currentIndex = currentIndex === 0 ? contentData.length - 1 : currentIndex - 1;
+  updateContent();
 
-      document
-        .getElementById("next_arrow")
-        .addEventListener("click", function () {
-          currentIndex =
-            currentIndex === contentData.length - 1 ? 0 : currentIndex + 1;
-          updateContent();
-        });
+  // Make the bar half orange on 'prev_arrow' click
+  bar.classList.add('half-orange');    // Add half-orange class
+  bar.classList.remove('full-orange'); // Remove full-orange class
+});
+
+document.getElementById("next_arrow").addEventListener("click", function () {
+  currentIndex = currentIndex === contentData.length - 1 ? 0 : currentIndex + 1;
+  updateContent();
+
+  // Make the bar fully orange on 'next_arrow' click
+  bar.classList.add('full-orange');    // Add full-orange class
+  bar.classList.remove('half-orange'); // Remove half-orange class
+});
 
       // Initial content setup
       updateContent();
